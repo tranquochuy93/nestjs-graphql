@@ -24,25 +24,25 @@ export class Bootstrap {
         );
     }
 
-    initMicroservice() {
-        const configService = this.app.get(ConfigService);
-        this.app.connectMicroservice<KafkaOptions>({
-            transport: Transport.KAFKA,
-            options: {
-                client: {
-                    clientId: 'TEST',
-                    brokers: [configService.get<string>('KAFKA_URL', '')]
-                },
-                consumer: {
-                    groupId: 'TEST'
-                }
-            }
-        });
-    }
+    // initMicroservice() {
+    //     const configService = this.app.get(ConfigService);
+    //     this.app.connectMicroservice<KafkaOptions>({
+    //         transport: Transport.KAFKA,
+    //         options: {
+    //             client: {
+    //                 clientId: 'TEST',
+    //                 brokers: [configService.get<string>('KAFKA_URL', '')]
+    //             },
+    //             consumer: {
+    //                 groupId: 'TEST'
+    //             }
+    //         }
+    //     });
+    // }
 
     async start() {
         this.app.set('trust proxy', true);
-        await this.app.startAllMicroservices();
+        // await this.app.startAllMicroservices();
         await this.app.listen(env.APP_PORT);
     }
 }

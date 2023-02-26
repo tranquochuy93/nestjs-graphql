@@ -1,19 +1,28 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { BaseEntity } from '~core/entities/base.entity';
 import { ProductEntity } from '~products/entities/product.entity';
 import { BillingEntity } from './billing.entity';
 
+@ObjectType()
 @Entity('ProductBilling')
 export class ProductBillingEntity extends BaseEntity {
+    @Field(() => Number)
     @Column({ type: 'numeric' })
-    amountOfProduct: string;
+    amountOfProduct: number;
 
+    @Field()
     @Column({ type: 'uuid' })
     productId: string;
 
-    @OneToMany(() => ProductEntity, (product) => product.productBillings)
+    @Field()
+    @Column({ type: 'uuid' })
+    billingId: string;
+
+    @Field(() => ProductEntity)
+    @ManyToOne(() => ProductEntity, (product) => product.productBillings)
     product: ProductEntity;
 
-    @OneToMany(() => BillingEntity, (product) => product.productBillings)
+    @ManyToOne(() => BillingEntity, (billing) => billing.productBillings)
     billing: BillingEntity;
 }

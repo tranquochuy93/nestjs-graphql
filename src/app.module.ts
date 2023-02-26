@@ -5,6 +5,7 @@ import { AuthModule } from '~auth/auth.module';
 import { BillingModule } from '~billings/billing.module';
 import { GlobalCacheModule } from '~config/cache.config';
 import { databaseConfig } from '~config/database.config';
+import { graphqlConfig } from '~config/graphql.config';
 import { i18nConfig } from '~config/i18n.config';
 import { HttpExceptionFilter } from '~core/filters/http-exception.filter';
 import { MicroserviceModule } from '~microservice/microservice.module';
@@ -17,6 +18,7 @@ import { AppService } from './app.service';
     imports: [
         databaseConfig,
         i18nConfig,
+        graphqlConfig,
         GlobalCacheModule,
         ConfigModule.forRoot({
             isGlobal: true

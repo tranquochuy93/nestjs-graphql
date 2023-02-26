@@ -4,10 +4,10 @@ export class CreateBillingTable1637223647948 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(
             `CREATE TABLE "Billing" (
-                "id" uuid NOT NULL DEFAULT public.uuid_generate_v4() PRIMARY KEY, 
+                "id" uuid NOT NULL DEFAULT public.uuid_generate_v4(), 
                 "name" character varying NOT NULL, 
                 "totalOfPrice" numeric NOT NULL DEFAULT 0,
-                "userId" uuid NOT NULL REFERENCES "User"(id), 
+                "userId" uuid NOT NULL, 
                 "deletedAt" TIMESTAMP,
                 "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
                 "updatedAt" TIMESTAMP NOT NULL DEFAULT now()
@@ -22,14 +22,14 @@ export class CreateBillingTable1637223647948 implements MigrationInterface {
             })
         );
 
-        // await queryRunner.createForeignKey(
-        //     'Billing',
-        //     new TableForeignKey({
-        //         columnNames: ['userId'],
-        //         referencedTableName: 'User',
-        //         referencedColumnNames: ['id']
-        //     })
-        // );
+        await queryRunner.createForeignKey(
+            'Billing',
+            new TableForeignKey({
+                columnNames: ['userId'],
+                referencedTableName: 'User',
+                referencedColumnNames: ['id']
+            })
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

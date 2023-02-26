@@ -28,5 +28,8 @@ export const env = {
         TOPIC_PREFIX: process.env.KAFKA_PREFIX,
         CLIENT_ID: process.env.KAFKA_CLIENT_ID,
         URL: process.env.KAFKA_URL
+    },
+    GRAPHQL: {
+        PLAYGROUND: process.env.GRAPHQL_PLAYGROUND || 1
     }
 };
