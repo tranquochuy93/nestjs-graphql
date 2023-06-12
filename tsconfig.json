@@ -1,26 +1,25 @@
 {
   "compilerOptions": {
-    "lib": ["ES2020", "ESNext"],
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2017",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
-    "esModuleInterop": true, // Some modules seem to have no default exports
-    // "skipLibCheck": true,
-    // "resolveJsonModule": true,
-    "paths": {
-      "~*": ["src/*"]
-    }
-    // "typeRoots": ["./node_modules/@types", "./@types"]
+      "lib": ["ES2020", "ESNext"],
+      "module": "commonjs",
+      "declaration": true,
+      "removeComments": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "target": "es2017",
+      "sourceMap": true,
+      "outDir": "./dist",
+      "baseUrl": "./",
+      "incremental": true,
+      // "resolveJsonModule": true,
+      "paths": {
+          "~*": ["src/*"]
+      },
+      "typeRoots": ["./node_modules/@types", "./@types"]
+  },
+  "ts-node": {
+      "files": true
   }
-  // "ts-node": {
-  //     "files": true
-  // }
 }

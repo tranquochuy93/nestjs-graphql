@@ -4,12 +4,12 @@
   "compilerOptions": {
     "assets": [
       {
-        "include": "i18n/**/*",
+        "include": "**/*.hbs",
         "watchAssets": true
       },
       {
-        "include": "**/*.json",
-        "watchAssets": false
+        "include": "i18n/**/*",
+        "watchAssets": true
       }
     ]
   }

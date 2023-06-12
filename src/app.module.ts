@@ -8,7 +8,7 @@ import { databaseConfig } from '~config/database.config';
 import { graphqlConfig } from '~config/graphql.config';
 import { i18nConfig } from '~config/i18n.config';
 import { HttpExceptionFilter } from '~core/filters/http-exception.filter';
-import { MicroserviceModule } from '~microservice/microservice.module';
+import { OpenApiModule } from '~open-apis/openApi.module';
 import { ProductModule } from '~products/product.module';
 import { UserModule } from '~users/user.module';
 import { AppController } from './app.controller';
@@ -25,9 +25,9 @@ import { AppService } from './app.service';
         }),
         AuthModule,
         UserModule,
-        MicroserviceModule,
         ProductModule,
-        BillingModule
+        BillingModule,
+        OpenApiModule
     ],
     controllers: [AppController],
     providers: [

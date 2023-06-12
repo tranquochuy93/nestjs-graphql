@@ -7,7 +7,9 @@ async function startApp() {
     const bootstrap = new Bootstrap();
     await bootstrap.initApp();
     bootstrap.initPipes();
-    // bootstrap.initMicroservice();
+    const document = bootstrap.buildSwagger();
+    await bootstrap.buildRedoc(document);
+    bootstrap.initStaticAsset();
     await bootstrap.start();
 }
 

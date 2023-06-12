@@ -1,11 +1,12 @@
 import { ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { KafkaOptions, Transport } from '@nestjs/microservices';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
+import path from 'path';
 import { AppModule } from '~app.module';
 import { env } from '~config/env.config';
 import { ValidateException } from '~core/exceptions/validate.exception';
+import { ReDocBuilder } from '~open-apis/re-doc-builder';
 
 export class Bootstrap {
     private app: NestExpressApplication;
@@ -24,25 +25,30 @@ export class Bootstrap {
         );
     }
 
-    // initMicroservice() {
-    //     const configService = this.app.get(ConfigService);
-    //     this.app.connectMicroservice<KafkaOptions>({
-    //         transport: Transport.KAFKA,
-    //         options: {
-    //             client: {
-    //                 clientId: 'TEST',
-    //                 brokers: [configService.get<string>('KAFKA_URL', '')]
-    //             },
-    //             consumer: {
-    //                 groupId: 'TEST'
-    //             }
-    //         }
-    //     });
-    // }
-
     async start() {
         this.app.set('trust proxy', true);
-        // await this.app.startAllMicroservices();
         await this.app.listen(env.APP_PORT);
+    }
+
+    buildSwagger() {
+        const swaggerConfig = new DocumentBuilder()
+            .setTitle('API with NestJS')
+            .setDescription('API developed throughout the API with NestJS course')
+            .setVersion('1.0')
+            .build();
+
+        const document = SwaggerModule.createDocument(this.app, swaggerConfig);
+        SwaggerModule.setup('api', this.app, document);
+        return document;
+    }
+
+    async buildRedoc(document: OpenAPIObject): Promise<void> {
+        await new ReDocBuilder(this.app, document).build();
+    }
+
+    initStaticAsset() {
+        this.app.useStaticAssets(path.join(env.ROOT_PATH, 'static'));
+        // this.app.setBaseViewsDir(path.join(env.ROOT_PATH, 'open-apis/spectaqls'));
+        // this.app.setViewEngine('html');
     }
 }
