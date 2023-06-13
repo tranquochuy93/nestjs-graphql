@@ -10,6 +10,18 @@
       {
         "include": "i18n/**/*",
         "watchAssets": true
+      },
+      {
+        "include": "static/**/*",
+        "watchAssets": true
+      },
+      {
+        "include": "**/*.json",
+        "watchAssets": false
+      },
+      {
+        "include": "**/**/*.yaml",
+        "watchAssets": true
       }
     ]
   }

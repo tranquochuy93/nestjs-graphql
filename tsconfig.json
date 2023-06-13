@@ -13,7 +13,10 @@
       "outDir": "./dist",
       "baseUrl": "./",
       "incremental": true,
-      // "resolveJsonModule": true,
+      //because it enables the importing package.json (a "JsonModule"), and that forces rootDir to automatically get set to the directory that contains all the source (i.e. including package.json), and now the src dir is no longer the rootDir but a subdir, and so reflected in the output
+      //stackoverflow.com/a/61467483/8910547
+      // 1. "resolveJsonModule": true,
+      // 2. If there is a similar file name outside of src folder, forces rootDir to the directory that contains all the source
       "paths": {
           "~*": ["src/*"]
       },

@@ -8,7 +8,6 @@ export class OpenApiController {
 
     @Get('graphql-documents')
     document(@Res() res: Response): void {
-        res.sendFile(join(__dirname, '..', '/static/spectasqls/index.html'));
-        console.log(join(__dirname, '..', '/static/spectasqls/index.html'));
+        res.sendFile(join(__dirname, '..', '/static/spectaqls/index.html'));
     }
 }

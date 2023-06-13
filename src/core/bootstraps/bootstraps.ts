@@ -6,7 +6,8 @@ import path from 'path';
 import { AppModule } from '~app.module';
 import { env } from '~config/env.config';
 import { ValidateException } from '~core/exceptions/validate.exception';
-import { ReDocBuilder } from '~open-apis/re-doc-builder';
+import { ReDocBuilder } from '~open-apis/re-doc/re-doc-builder';
+import { SpectaqlBuilder } from '~open-apis/spectaql/spectaql-builder';
 
 export class Bootstrap {
     private app: NestExpressApplication;
@@ -43,12 +44,17 @@ export class Bootstrap {
     }
 
     async buildRedoc(document: OpenAPIObject): Promise<void> {
-        await new ReDocBuilder(this.app, document).build();
+        await new ReDocBuilder(this.app, document).build(document);
+    }
+
+    async builSpectaql(): Promise<void> {
+        await new SpectaqlBuilder().build();
     }
 
     initStaticAsset() {
-        this.app.useStaticAssets(path.join(env.ROOT_PATH, 'static'));
-        // this.app.setBaseViewsDir(path.join(env.ROOT_PATH, 'open-apis/spectaqls'));
+        console.log(path.join(env.ROOT_PATH, 'static'));
+        this.app.useStaticAssets(path.join(env.ROOT_PATH, 'static'), { prefix: '/static' });
+        // this.app .setBaseViewsDir(path.join(env.ROOT_PATH, 'open-apis/spectaqls'));
         // this.app.setViewEngine('html');
     }
 }

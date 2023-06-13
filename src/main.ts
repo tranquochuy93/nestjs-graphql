@@ -9,6 +9,7 @@ async function startApp() {
     bootstrap.initPipes();
     const document = bootstrap.buildSwagger();
     await bootstrap.buildRedoc(document);
+    await bootstrap.builSpectaql();
     bootstrap.initStaticAsset();
     await bootstrap.start();
 }
