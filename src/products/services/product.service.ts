@@ -11,7 +11,7 @@ export class ProductService {
     async upsertOne(dto: UpsertProductDto): Promise<ProductEntity> {
         const { id } = dto;
         if (id) {
-            await this.productRepo.findOneOrFail({ id });
+            await this.productRepo.findOneOrFail({ where: { id } });
         }
 
         return this.productRepo.save(dto);

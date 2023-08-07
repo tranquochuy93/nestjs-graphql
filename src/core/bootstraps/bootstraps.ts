@@ -6,7 +6,7 @@ import path from 'path';
 import { AppModule } from '~app.module';
 import { env } from '~config/env.config';
 import { ValidateException } from '~core/exceptions/validate.exception';
-import { ReDocBuilder } from '~open-apis/re-doc/re-doc-builder';
+// import { ReDocBuilder } from '~open-apis/re-doc/re-doc-builder';
 import { SpectaqlBuilder } from '~open-apis/spectaql/spectaql-builder';
 
 export class Bootstrap {
@@ -43,9 +43,9 @@ export class Bootstrap {
         return document;
     }
 
-    async buildRedoc(document: OpenAPIObject): Promise<void> {
-        await new ReDocBuilder(this.app, document).build(document);
-    }
+    // async buildRedoc(document: OpenAPIObject): Promise<void> {
+    //     await new ReDocBuilder(this.app, document).build(document);
+    // }
 
     async builSpectaql(): Promise<void> {
         await new SpectaqlBuilder().build();

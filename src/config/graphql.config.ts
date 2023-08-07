@@ -4,7 +4,7 @@ import { join } from 'path';
 
 export const graphqlConfig = GraphQLModule.forRoot<ApolloDriverConfig>({
     driver: ApolloDriver,
-    debug: false,
+    // debug: false,
     playground: true,
     autoSchemaFile: join(process.cwd(), 'src/schema.gql')
 });

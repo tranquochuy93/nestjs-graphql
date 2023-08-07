@@ -7,8 +7,9 @@ async function startApp() {
     const bootstrap = new Bootstrap();
     await bootstrap.initApp();
     bootstrap.initPipes();
-    const document = bootstrap.buildSwagger();
-    await bootstrap.buildRedoc(document);
+    bootstrap.buildSwagger();
+    // const document = bootstrap.buildSwagger();
+    // await bootstrap.buildRedoc(document);
     await bootstrap.builSpectaql();
     bootstrap.initStaticAsset();
     await bootstrap.start();

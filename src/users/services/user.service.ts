@@ -9,11 +9,11 @@ export class UserService {
     constructor(private userRepo: UserRepository) {}
 
     findByIdNotFail(id: string) {
-        return this.userRepo.findOne(id);
+        return this.userRepo.findOne({ where: { id } });
     }
 
     findByEmailNotFail(email: string) {
-        return this.userRepo.findOne({ email });
+        return this.userRepo.findOne({ where: { email } });
     }
 
     save(user) {
@@ -27,7 +27,7 @@ export class UserService {
     async upsertOne(dto: UpsertUserInput): Promise<UserEntity> {
         const { id } = dto;
         if (id) {
-            await this.userRepo.findOneOrFail({ id });
+            await this.userRepo.findOneOrFail({ where: { id } });
         }
 
         return this.userRepo.save(dto);
